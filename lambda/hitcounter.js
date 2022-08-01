@@ -3,9 +3,14 @@ const { DynamoDB, Lambda } = require("aws-sdk");
 exports.handler = async function (event) {
   console.log("request:", JSON.stringify(event, undefined, 2));
 
-  const initOpts = {
-    endpoint: `http://${process.env.LOCALSTACK_HOSTNAME}:4566`,
-  };
+  // Need to explicitly tell this function where to find lambda and
+  // dynamo in localstack, otherwise it will try to access real aws
+  // resources and fail.
+  // see: https://github.com/localstack/localstack/issues/5866#issuecomment-1100607635
+  const isLocal = !!process.env.LOCALSTACK_HOSTNAME;
+  const initOpts = !isLocal
+    ? undefined
+    : { endpoint: `http://${process.env.LOCALSTACK_HOSTNAME}:4566` };
 
   // create AWS SDK clients
   const dynamo = new DynamoDB(initOpts);
