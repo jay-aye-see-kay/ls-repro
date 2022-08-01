@@ -15,6 +15,7 @@ export class HitCounter extends cdk.Construct {
 
     this.table = new dynamodb.Table(this, "Hits", {
       partitionKey: { name: "path", type: dynamodb.AttributeType.STRING },
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
 
     this.handler = new lambda.Function(this, "HitCounterHandler", {
