@@ -3,9 +3,13 @@ const { DynamoDB, Lambda } = require("aws-sdk");
 exports.handler = async function (event) {
   console.log("request:", JSON.stringify(event, undefined, 2));
 
+  const initOpts = {
+    endpoint: `http://${process.env.LOCALSTACK_HOSTNAME}:4566`,
+  };
+
   // create AWS SDK clients
-  const dynamo = new DynamoDB();
-  const lambda = new Lambda();
+  const dynamo = new DynamoDB(initOpts);
+  const lambda = new Lambda(initOpts);
 
   // update dynamo entry for "path" with hits++
   await dynamo
