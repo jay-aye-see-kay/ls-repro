@@ -15,17 +15,18 @@
     "@types/jest": "^27.5.0",
     "@types/node": "10.17.27",
     "@types/prettier": "2.6.0",
-    "aws-cdk": "1.165.0",
+    "aws-cdk": "^1.166.1",
     "jest": "^27.5.1",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.8.1",
     "typescript": "~3.9.7"
   },
   "dependencies": {
-    "@aws-cdk/aws-apigateway": "^1.165.0",
-    "@aws-cdk/aws-dynamodb": "^1.165.0",
-    "@aws-cdk/aws-lambda": "^1.165.0",
+    "@aws-cdk/aws-apigateway": "^1.166.1",
+    "@aws-cdk/aws-dynamodb": "^1.166.1",
+    "@aws-cdk/aws-lambda": "^1.166.1",
     "@aws-cdk/core": "1.165.0",
+    "cdk-dynamo-table-viewer": "^0.1.142",
     "source-map-support": "^0.5.21"
   }
 }
